@@ -17,7 +17,8 @@ class JustReshape(torch.nn.Module):
 net = JustReshape()
 model_name = 'just_reshape.onnx'
 dummy_input = torch.randn(2, 3, 4, 59)
-torch.onnx.export(net, dummy_input, model_name, input_names=['input'], output_names=['output'], do_constant_folding=False)
+torch.onnx.export(net, dummy_input, model_name,
+                  input_names=['input'], output_names=['output'], do_constant_folding=False)
 ```
 That's the result without using simplification. I used [netron.app](netron.app) for the visualisation. \
 ![no-sim](imgs/just_reshape.onnx.svg)
@@ -25,7 +26,8 @@ That's the result without using simplification. I used [netron.app](netron.app) 
 
 ```python
 model_name = 'just_reshape_sim.onnx'
-torch.onnx.export(net, dummy_input, model_name, input_names=['input'], output_names=['output'], do_constant_folding=True)
+torch.onnx.export(net, dummy_input, model_name,
+                  input_names=['input'], output_names=['output'], do_constant_folding=True)
 ```
 Result with folding. \
 ![sim](imgs/just_reshape_sim.onnx.svg)
@@ -44,13 +46,15 @@ A simple example, where the results differ.
 conv_block = torch.nn.Sequential(torch.nn.Conv2d(3, 16, 3, padding=1), torch.nn.BatchNorm2d(16), torch.nn.ReLU())
 model_name = 'conv.onnx'
 dummy_input = torch.randn(2, 3, 59, 59)
-torch.onnx.export(conv_block, dummy_input, model_name, input_names=['input'], output_names=['output'], do_constant_folding=False)
+torch.onnx.export(conv_block, dummy_input, model_name,
+                  input_names=['input'], output_names=['output'], do_constant_folding=False)
 ```
 ![conv-no-sim](imgs/conv.onnx.svg)
 
 ```python
 model_name = 'conv_sim.onnx'
-torch.onnx.export(conv_block, dummy_input, model_name, input_names=['input'], output_names=['output'], do_constant_folding=True)
+torch.onnx.export(conv_block, dummy_input, model_name,
+                  input_names=['input'], output_names=['output'], do_constant_folding=True)
 ```
 Result with folding. \
 ![conv-sim](imgs/conv_sim.onnx.svg)
