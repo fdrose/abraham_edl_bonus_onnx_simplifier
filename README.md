@@ -1,7 +1,7 @@
 Here I show how one can use an onnx simplifer library.
 Almost the same functionality is now integrated to torch.onnx module, so you don't need to use it directly, you can just set a specific parameter `do_constant_folding=True` when exporting the model.
 So, original example from [onnx-simplifier](https://github.com/daquexian/onnx-simplifier) has to be changed a bit. 
-In general, results between onnx-simplifier and torch.onnx with `do_constant_folding=True` can differ, one of such cases is shown in the second example.
+In general, results between onnx-simplifier and torch.onnx with `do_constant_folding=True` may differ, one of such cases is shown in the second example.
 
 ## Reshape (showing the effect of do_constant_folding flag)
 ```python
