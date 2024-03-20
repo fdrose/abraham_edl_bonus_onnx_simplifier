@@ -3,7 +3,7 @@ Almost the same functionality is now integrated to torch.onnx module, so you don
 So, original example from [onnx-simplifier](https://github.com/daquexian/onnx-simplifier) has to be changed a bit. 
 In general, results between onnx-simplifier and torch.onnx with `do_constant_folding=True` can differ, one of such cases is shown in the second example.
 
-## Reshape
+## Reshape (showing the effect of do_constant_folding flag)
 ```python
 import torch
 
@@ -37,7 +37,7 @@ onnxsim "just_reshape.onnx" "just_reshape_sim2.onnx"
 Result with sinplifier. \
 ![sim2](imgs/just_reshape_sim2.onnx.svg)
 
-## ConvBlock
+## ConvBlock (showing results can differ)
 A simple example, where the results differ.
 
 ```python
