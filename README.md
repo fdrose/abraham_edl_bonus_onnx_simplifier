@@ -43,7 +43,9 @@ Result with sinplifier. \
 A simple example, where the results differ.
 
 ```python
-conv_block = torch.nn.Sequential(torch.nn.Conv2d(3, 16, 3, padding=1), torch.nn.BatchNorm2d(16), torch.nn.ReLU())
+conv_block = torch.nn.Sequential(torch.nn.Conv2d(3, 16, 3, padding=1),
+                                 torch.nn.BatchNorm2d(16),
+                                 torch.nn.ReLU())
 model_name = 'conv.onnx'
 dummy_input = torch.randn(2, 3, 59, 59)
 torch.onnx.export(conv_block, dummy_input, model_name,
